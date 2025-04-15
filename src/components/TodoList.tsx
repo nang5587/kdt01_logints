@@ -3,11 +3,17 @@ import axios from "axios"
 import TodoForm from "./TodoForm"
 import TodoItem from "./TodoItem"
 
+interface Tdata {
+    "id": string;
+    "text": string;
+    "completed": string;
+}
+
 // 기본 URL 설정
 const baseurl = "http://localhost:3005/todos"
 
 export default function TodoList() {
-    const [tdata, setTdata] = useState();
+    const [tdata, setTdata] = useState<Tdata | undefined>();
 
     // Todoitem들을 가져오는 함수
     const getData = async () => {
@@ -16,7 +22,7 @@ export default function TodoList() {
     }
 
     // DB에 Todoitem의 내용과 완료 여부를 추가하는 함수
-    const addTodo = async (text, completed) => {
+    const addTodo = async (text:string, completed:string) => {
         const resp = await axios.post(baseurl, {
             text: text,
             completed: completed
@@ -26,14 +32,14 @@ export default function TodoList() {
     }
 
     // DB에 Todoitem의 내용을 삭제하는 함수
-    const handleDelete = async (id) => {
+    const handleDelete = async (id:string) => {
         await axios.delete(baseurl + `/${id}`);
         
         getData();
     }
 
     // DB에 Todoitem의 완료 여부를 수정하는 함수
-    const handleToggle = async (id) => {
+    const handleToggle = async (id:string) => {
         const resp = await axios.get(baseurl + `/${id}`);
         const todo = resp.data;
 
@@ -58,7 +64,7 @@ export default function TodoList() {
     <div className="w-full flex flex-col justify-center items-center">
         <TodoForm addTodo={addTodo}/>
         <div className="w-10/12 mt-10 flex flex-col justify-center">
-            {tdata && tdata.map(item => 
+            {tdata && tdata.map((item:Tdata) => 
                 <TodoItem key={item.id} id={item.id} text={item.text} completed={item.completed} handleDelete={handleDelete} handleToggle={handleToggle}/>)}
         </div>
     </div>

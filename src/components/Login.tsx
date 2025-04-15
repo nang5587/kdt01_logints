@@ -4,28 +4,30 @@ import { useAtom } from "jotai";
 import { useRef } from "react";
 import { logAtom } from "../atoms/IsLogin";
 import { useNavigate } from "react-router-dom";
+import { MouseEvent } from "react";
 import train from "../assets/subway.png"
+
 export default function Login() {
   //사용할 변수 초기화
-  const [login, setLogin] = useAtom(logAtom);
+  const [, setLogin] = useAtom(logAtom);
   const navigate = useNavigate();
-  const emailref = useRef();
-  const passref = useRef();
+  const emailref = useRef<HTMLInputElement>(null);
+  const passref = useRef<HTMLInputElement>(null);
 
   //input에 입력된 값 확인 후 로컬스토리지 저장하는 함수
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:MouseEvent<HTMLButtonElement>):void => {
     //url로 민감한 정보 전송 방지
     e.preventDefault();
 
     //이메일과 패스워드가 빈 상태인지 확인
-    if(emailref.current.value == ""){
+    if(emailref.current?.value == ""){
       alert("이메일을 입력해주세요.");
-      emailref.current.focus();
+      emailref.current?.focus();
       return;
     }
-    if(passref.current.value == ""){
+    if(passref.current?.value == ""){ // 값을 가져오는 경우에는 반드시 ?로 null 못 들어오게 해야 함
       alert("패스워드를 입력해주세요.");
-      passref.current.focus();
+      passref.current?.focus(); // 따라서 focus에는 안 붙임
       return;
     }
 

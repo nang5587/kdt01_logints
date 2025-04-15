@@ -1,3 +1,10 @@
+#headcolor, #maincolor, #footcolor{
+  /* background-color: #edffe7; */
+  /* background-color: #ffeee24f; */
+  background-color: #dfffe46b;
+  /* background-color: rgba(238, 252, 238, 0.527); */
+}
+
 #root {
   width : 100vw;
   height : 100vh;

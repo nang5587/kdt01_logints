@@ -1,9 +1,16 @@
 import TailButton from "../UI/TailButton"
 
+interface TodoItemProps {
+    id:string;
+    text:string;
+    completed:string;
+    handleDelete:(id:string)=>void;
+    handleToggle:(id:string)=>void;
+}
 
-export default function TodoItem({id, text, completed, handleDelete, handleToggle}) {
+export default function TodoItem({id, text, completed, handleDelete, handleToggle}:TodoItemProps) {
 
-  return (
+    return (
     <div className="w-full flex items-center justify-between ps-4 border border-gray-200 rounded-2xl bg-white hover:bg-gray-50 mb-3">
         <div className="w-4/5 flex justify-start items-center">
             <div onClick={()=> handleToggle(id)} className="hover:cursor-pointer">
@@ -19,5 +26,5 @@ export default function TodoItem({id, text, completed, handleDelete, handleToggl
             </p>
         </div>
     </div>
-  )
+    )
 }

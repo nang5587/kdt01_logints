@@ -1,27 +1,32 @@
 import TailSelect from "../UI/TailSelect"
 import TailButton from "../UI/TailButton";
 import { useRef, useEffect } from "react";
+import { MouseEvent } from "react";
 
-export default function TodoForm({addTodo}) {
+interface TodoFormProps {
+  addTodo:(content:string, sel:string)=>void;
+}
+
+export default function TodoForm({addTodo}:TodoFormProps) {
   //ref를 사용하여 입력된 완료 여부와 내용을 가져옴
-  const refsel = useRef();
-  const contentref = useRef();
+  const refsel = useRef<HTMLSelectElement>(null);
+  const contentref = useRef<HTMLInputElement>(null);
 
   //완료 여부를 나타내는 X, O를 배열로 선언
   const sel = ["X", "O"];
 
   //"확인" 버튼 클릭 시 완료 여부와 내용을 가져와서 addTodo 함수에 전달함
-  const handleClick = (e) => {
+  const handleClick = (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     //내용이 비었을 경우 처리
-    if(contentref.current.value == ""){
+    if(contentref.current?.value == ""){
         alert("내용을 입력해주세요.");
         contentref.current.focus();
         return;
     }
     //완료 여부와 내용을 변수에 저장
-    const content = contentref.current.value;
-    const sel = refsel.current.value;
+    const content = contentref.current?.value;
+    const sel = refsel.current?.value;
     //내용을 비워줌
     contentref.current.value = "";
     //함수 호출
@@ -29,7 +34,7 @@ export default function TodoForm({addTodo}) {
   }
 
   //"취소" 버튼 클릭 시 완료 여부를 X로 바꾸고 내용을 비워줌
-  const handleRemove = (e) => {
+  const handleRemove = (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     refsel.current.value = "X";
     contentref.current.value = "";
