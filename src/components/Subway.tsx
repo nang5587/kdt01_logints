@@ -34,9 +34,9 @@ export default function Subway() {
   }, [login, navigate]);
 
   const [tags, setTags] = useState<React.ReactNode[]>([]);
-  const [tags1, setTags1] = useState([]);
-  const [data, setData] = useState<Tdata | undefined>();
-  const [, setCode] = useState();
+  const [tags1, setTags1] = useState<React.ReactNode[]>([]);
+  const [data, setData] = useState<Tdata[]>([]);
+  const [, setCode] = useState<string | undefined>();
   const refSel = useRef<HTMLSelectElement>(null);
 
   const selList = sarea.map(
@@ -78,14 +78,14 @@ export default function Subway() {
 
       const codes = (sarea as Sarea[]).map((item:Sarea) => `${item["측정소"]},${item["코드"]}`); // json은 ":" 말고 "as"
       const test = codes.find(item => item.split(',')[0] === selected) || "";
-      const selectedCode = test.split(',')[1] || "";
-    
+      const selectedCode:string = test.split(',')[1] || "";
+      console.log(selectedCode)
       setCode(selectedCode);
-    
-      const data2 = data.filter(item => item.areaIndex === selectedCode);
-      console.log("data2",data2);
-      const tm = data2.map(item => 
-          <tr key={item}
+
+      const data2 = data.filter((item:Tdata) => item.areaIndex === selectedCode);
+      // console.log("data2",data);
+      const tm = data2.map((item:Tdata, idx:number) => 
+          <tr key={`${item}${idx}`}
           className="bg-white border-b border-gray-200
                   hover:bg-gray-50 hover:cursor-pointer hover:font-bold" >
 

@@ -4,14 +4,14 @@ import Login from "./components/Login"
 import Nav from "./components/Nav"
 import Subway from "./components/Subway"
 import Home from "./components/Home"
-import { logAtom } from "./atoms/IsLogin"
-import { useAtom } from "jotai"
 import TodoList from "./components/TodoList"
 import TsxTest from "./components/TsxTest"
+import MyClock from "./components/02/MyClock"
+import Lotto from "./components/05/Lotto"
+import FoodMain from "./components/06/FoodMain"
+import BoxOffice from "./components/09/BoxOffice copy"
 
 function App() {
-  //전역변수로 로그인 관리
-  const [login] = useAtom(logAtom);
 
   return (
     <BrowserRouter>
@@ -30,6 +30,10 @@ function App() {
             <Route path="/subway" element={<Subway />} />
             <Route path="/todoList" element={<TodoList />} />
             <Route path="/test" element={<TsxTest />} />
+            <Route path="/myClock" element={<MyClock />} />
+            <Route path="/lotto" element={<Lotto />} />
+            <Route path="/food" element={<FoodMain />} />
+            <Route path="/movie" element={<BoxOffice />} />
           </Routes>
         </main>
         

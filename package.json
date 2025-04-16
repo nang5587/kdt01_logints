@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.3",
+    "animate": "^1.0.0",
+    "animation-react": "^1.2.6",
     "axios": "^1.8.4",
     "jotai": "^2.12.2",
     "react": "^19.0.0",
@@ -28,6 +30,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"

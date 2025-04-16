@@ -9,7 +9,7 @@ interface TodoFormProps {
 
 export default function TodoForm({addTodo}:TodoFormProps) {
   //ref를 사용하여 입력된 완료 여부와 내용을 가져옴
-  const refsel = useRef<HTMLSelectElement>(null);
+  const refsel = useRef<HTMLSelectElement>(null); // 생성 후 읽게 되어있어서 처음에 null이 될 수 있으니 초기값은 null
   const contentref = useRef<HTMLInputElement>(null);
 
   //완료 여부를 나타내는 X, O를 배열로 선언
@@ -28,21 +28,26 @@ export default function TodoForm({addTodo}:TodoFormProps) {
     const content = contentref.current?.value;
     const sel = refsel.current?.value;
     //내용을 비워줌
+    if(contentref.current)
     contentref.current.value = "";
     //함수 호출
-    addTodo(content, sel);
+    if(content&&sel)
+      addTodo(content, sel);
   }
 
   //"취소" 버튼 클릭 시 완료 여부를 X로 바꾸고 내용을 비워줌
   const handleRemove = (e:MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    refsel.current.value = "X";
-    contentref.current.value = "";
+    if(refsel.current)
+      refsel.current.value = "X";
+    if(contentref.current)
+      contentref.current.value = "";
   }
 
   //랜더링 시 완료 여부를 X로 초기화
   useEffect(()=>{
-    refsel.current.value = sel[0];
+    if(refsel.current)
+      refsel.current.value = sel[0];
   },[]);
 
   return (

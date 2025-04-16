@@ -4,7 +4,6 @@ import { useAtom } from "jotai";
 import { useRef } from "react";
 import { logAtom } from "../atoms/IsLogin";
 import { useNavigate } from "react-router-dom";
-import { MouseEvent } from "react";
 import train from "../assets/subway.png"
 
 export default function Login() {
@@ -15,9 +14,9 @@ export default function Login() {
   const passref = useRef<HTMLInputElement>(null);
 
   //input에 입력된 값 확인 후 로컬스토리지 저장하는 함수
-  const handleSubmit = (e:MouseEvent<HTMLButtonElement>):void => {
+  const handleSubmit = ():void => {
     //url로 민감한 정보 전송 방지
-    e.preventDefault();
+    // e.preventDefault();
 
     //이메일과 패스워드가 빈 상태인지 확인
     if(emailref.current?.value == ""){
@@ -32,8 +31,10 @@ export default function Login() {
     }
 
     //로컬스토리지에 저장
-    localStorage.setItem('logEmail', emailref.current.value);
-    localStorage.setItem('logPass', passref.current.value);
+    if (emailref.current)
+        localStorage.setItem('logEmail', emailref.current.value);
+    if (passref.current )
+        localStorage.setItem('logPass', passref.current.value);
 
     //로그인 상태 변경
     setLogin(true);
@@ -55,7 +56,7 @@ export default function Login() {
             
             {/* 이메일 input */}
             <div>
-              <label htmlFor="email" className="block text-sm/6 font-bold text-gray-700">
+              <label htmlFor="email" className="block text-sm/6 font-bold text-gray-700 text-left">
                 이메일
               </label>
               <div className="mt-2">

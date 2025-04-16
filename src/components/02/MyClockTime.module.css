@@ -1,0 +1,13 @@
+.pst {
+    color: rgb(84, 84, 84);
+    font-weight: bold;
+    background-color: white;
+    border-radius : 300px 300px 300px 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid;
+    border-color: rgb(231, 231, 231);
+    box-shadow: 5px 5px 5px rgb(231, 231, 231);
+    margin-top: 10px;
+    font-size: large;
+}

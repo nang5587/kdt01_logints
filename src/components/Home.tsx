@@ -2,7 +2,7 @@ import { useAtom } from "jotai"
 import { logAtom } from "../atoms/IsLogin"
 import { useEffect } from "react";
 import Login from "./Login"
-import train from "../assets/train.png"
+// import train from "../assets/train.png"
 
 export default function Home() {
   //전역변수로 로그인 관리
@@ -32,11 +32,11 @@ export default function Home() {
         </div>
 
         {/* 지하철 이미지 */}
-        <div className="flex w-full justify-start p-10">
+        {/* <div className="flex w-full justify-start p-10">
           <div className="w-full  overflow-hidden">
             <img id="animate-marquee" className="w-1/4" src={train} />
           </div>
-        </div>
+        </div> */}
       </div>
       ) : (
         //로그인 안 했을 때는 로그인 화면
