@@ -5,7 +5,7 @@ import TailButton from "../../UI/TailButton";
 import { FoodDataInter } from '../../types/FoodT';
 
 export default function  FoodMain(){
-    const[tags, setTags] = useState<React.ReactElement[]>([]);
+    const[tags, setTags] = useState<React.ReactNode[]>([]);
     let category = foodData.map((item:FoodDataInter) => item["운영주체 분류"].replace(/ /g, ''));
     category = [...new Set(category)];
 

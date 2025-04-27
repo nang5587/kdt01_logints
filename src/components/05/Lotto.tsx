@@ -1,8 +1,8 @@
 import TailBall from "../../UI/TailBall";
 import TailButton from "../../UI/TailButton";
-import React, { useState } from "react"
+import React, { ReactNode, useState } from "react"
 export default function Lotto() {
-    const [lottoTags, setLottoTags] = useState<React.ReactElement[]>([]);
+    const [lottoTags, setLottoTags] = useState<ReactNode[]>([]);
     
     const handleLottoNum = () => {
         let lottoNum:(number|string)[] = [];
